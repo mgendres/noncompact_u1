@@ -1,0 +1,69 @@
+This code is written in C/C++; the following notes assume you have gcc/g++ or some other c-compiler installed on your computer.
+You will also need the FFTW (v3.3.3) library for performing various fast-fourier transforms.
+It is easy to install, and you can get it here: http://www.fftw.org
+
+====WHAT IS HERE====
+
+It is pretty self-explainatory:
+
+  include: contains *.h files
+  src: contains *.C files 
+  scripts: compilation scripts
+  tests: a variety of test programs
+  production: an example production code
+
+====COMPILING AND RUNNING ====
+
+1) To create the library edit the FFTWLIB flag in the files:
+
+scripts/compile/make_lib.sh
+
+and
+
+scripts/compile/make_bin.sh
+
+to point to where your FFTW library is located.
+
+Note that these files (along with scripts/compile/make_clean.sh) are my lazy alternative to using a Makefile; they will be used to compile the library and test/production programs.
+
+2) next run: ./scripts/compile/make_lib.sh
+
+This should create the library file called noncompact_u1.a (as well as an obj directory containing some *.o files which were created during the comilation)
+
+3) To compile one of the test programs, ENTER the test program directory, e.g.,
+
+cd tests/gauge_invariance/
+
+and then run the script:
+
+../../scripts/compile/make_bin.sh main.C
+
+This will create your new binary called a.out
+
+4) To run the test program, type:
+
+./a.out
+
+5) Production code is compiled and run similarly to test code
+
+====DEBUGGING AND MEMORY USE====
+
+A useful tool for detecting memory leaks/use and profiling is valgrind (no recompilation of your code is required!):
+
+http://valgrind.org/
+
+Some of the tools included are:
+
+1) To profile memory use, run:
+
+valgrind --tool=massif ./a.out
+
+2) To detect memory leaks, access of unallocated memory locations, etc.,, run:
+
+valgrind --leak-check=yes ./a.out
+
+3) Profiling can be done with
+
+valgrind --tool=callgrind ./a.out
+callgrind_annotate [options] callgrind.out.<pid>
+
