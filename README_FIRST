@@ -16,17 +16,17 @@ It is pretty self-explainatory:
 
 1) To create the library edit the FFTWLIB flag in the files:
 
-scripts/compile/make_lib.sh
+scripts/make_lib.sh
 
 and
 
-scripts/compile/make_bin.sh
+scripts/make_bin.sh
 
 to point to where your FFTW library is located.
 
-Note that these files (along with scripts/compile/make_clean.sh) are my lazy alternative to using a Makefile; they will be used to compile the library and test/production programs.
+Note that these files (along with scripts/make_clean.sh) are my lazy alternative to using a Makefile; they will be used to compile the library and test/production programs.
 
-2) next run: ./scripts/compile/make_lib.sh
+2) next run: ./scripts/make_lib.sh
 
 This should create the library file called noncompact_u1.a (as well as an obj directory containing some *.o files which were created during the comilation)
 
@@ -36,7 +36,7 @@ cd tests/gauge_invariance/
 
 and then run the script:
 
-../../scripts/compile/make_bin.sh main.C
+../../scripts/make_bin.sh main.C
 
 This will create your new binary called a.out
 
